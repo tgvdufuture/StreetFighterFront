@@ -21,5 +21,15 @@ services:
             - '../src/Kernel.php'
         tags: ['controller.service_arguments']
 
+    # default configuration for services in *Controller.php files
+    'App\Controller\':
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # controllers
+    'App\Controller\Api\CharacterController': ~
+    'App\Controller\Api\ModificationController': ~
+    'App\Controller\Api\UserController': ~
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

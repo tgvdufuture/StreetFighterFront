@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arènes - Combat de personnages{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Arènes de Combat</h1>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Sélectionnez deux personnages pour le combat</h5>
+                    <form method="post" action="{{ path('app_arena_fight') }}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="character1" class="form-label">Personnage 1</label>
+                                <select name="character1" id="character1" class="form-select" required>
+                                    <option value="">Choisir un personnage</option>
+                                    {% for character in characters %}
+                                    <option value="{{ character.id }}">{{ character.name }} (Force: {{ character.strength }})</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="character2" class="form-label">Personnage 2</label>
+                                <select name="character2" id="character2" class="form-select" required>
+                                    <option value="">Choisir un personnage</option>
+                                    {% for character in characters %}
+                                    <option value="{{ character.id }}">{{ character.name }} (Force: {{ character.strength }})</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Commencer le combat !</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Liste des personnages disponibles</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Force</th>
+                                    <th>Points de vie</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for character in characters %}
+                                <tr>
+                                    <td>{{ character.name }}</td>
+                                    <td>{{ character.strength }}</td>
+                                    <td>{{ character.health }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
